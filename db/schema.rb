@@ -34,7 +34,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_23_161225) do
     t.bigint "subscription_id"
     t.datetime "started_at", null: false
     t.datetime "expires_at", null: false
-    t.integer "status", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["client_id"], name: "index_client_subscriptions_on_client_id"
@@ -42,8 +41,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_23_161225) do
   end
 
   create_table "clients", force: :cascade do |t|
-    t.string "name", null: false
-    t.string "surname", null: false
+    t.string "first_name", null: false
+    t.string "last_name", null: false
     t.string "email", null: false
     t.string "phone_number", null: false
     t.date "date_of_birth"
@@ -53,15 +52,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_23_161225) do
   end
 
   create_table "orders", force: :cascade do |t|
-    t.bigint "scooter_id"
+    t.bigint "scooter_in_work_id"
     t.bigint "client_id"
     t.datetime "started_at", null: false
     t.datetime "ended_at", null: false
     t.decimal "total_sum"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.index ["client_id"], name: "index_orders_on_client_id"
-    t.index ["scooter_id"], name: "index_orders_on_scooter_id"
+    t.index ["scooter_in_work_id"], name: "index_orders_on_scooter_in_work_id"
   end
 
   create_table "reviews", force: :cascade do |t|
@@ -76,7 +73,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_23_161225) do
   create_table "scooter_in_works", force: :cascade do |t|
     t.bigint "scooter_id"
     t.bigint "city_id"
-    t.float "batter_capacity", null: false
+    t.float "battery_capacity", null: false
     t.float "current_battery", null: false
     t.string "current_location", null: false
     t.datetime "created_at", null: false
@@ -91,6 +88,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_23_161225) do
     t.float "weight", null: false
     t.float "max_speed", null: false
     t.float "power", null: false
+    t.float "price_per_minute", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

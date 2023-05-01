@@ -5,7 +5,6 @@ class CreateClientSubscriptions < ActiveRecord::Migration[7.0]
       t.belongs_to :subscription
       t.datetime :started_at, null: false
       t.datetime :expires_at, null: false
-      t.integer :status, null: false, default: 0
 
       t.timestamps
     end

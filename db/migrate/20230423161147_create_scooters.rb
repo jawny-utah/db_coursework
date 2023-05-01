@@ -6,6 +6,7 @@ class CreateScooters < ActiveRecord::Migration[7.0]
       t.float :weight, null: false
       t.float :max_speed, null: false
       t.float :power, null: false
+      t.float :price_per_minute, null: false
 
       t.timestamps
     end
