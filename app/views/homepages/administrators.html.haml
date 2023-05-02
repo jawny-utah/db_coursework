@@ -1,0 +1,23 @@
+.table-info-wrapper
+  %div
+    %h1 Administrators
+    .total-records-count
+      %span Total count
+      %span= Administrator.all.length
+  = link_to "Add new administrator", new_administrator_path, class: "small-btn create-btn"
+%table
+  %thead
+    %tr
+      - Administrator.column_names.reject { |col| fields_to_exclude.include?(col) }.map(&:humanize).each do |field|
+        %th= field
+      %th
+  %tbody
+    - Administrator.all.each do |admin|
+      %tr
+        - Administrator.column_names.reject { |col| fields_to_exclude.include?(col) }.each do |field|
+          %td= admin.send(field)
+        %td.flex{ style: "gap: 10px;"}
+          = link_to edit_administrator_path(admin), class: "empty-link" do
+            = render inline: Rails.root.join('app/assets/images/edit.svg').read
+          = button_to administrator_path(admin), method: :delete, data: { turbo: false }, class: "empty-link" do
+            = render inline: Rails.root.join('app/assets/images/trash.svg').read

@@ -1,0 +1,17 @@
+%h1 Orders
+%table
+  %thead
+    %tr
+      %th Scooter In Work
+      %th Client
+      %th Started At
+      %th Ended At
+      %th Total Sum
+  %tbody
+    - Order.all.each do |order|
+      %tr
+        %td= order.scooter_in_work.scooter.model
+        %td= order.client.first_name + " " + order.client.last_name
+        %td= order.started_at
+        %td= order.ended_at
+        %td= order.total_sum

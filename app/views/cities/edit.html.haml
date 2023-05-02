@@ -1,0 +1,10 @@
+.centered-div
+  %h1 Edit city
+  = form_with model: @city do |form|
+    - City.column_names.reject { |a| fields_to_exclude.include?(a)}.each do |field|
+      .inputs-wrapper
+        = form.label field.humanize, for: "city_#{field.to_sym}"
+        = form.text_field field.to_sym, required: true
+    .submit-buttons-wrapper
+      = link_to "Back", cities_homepages_path
+      = form.submit "Save"

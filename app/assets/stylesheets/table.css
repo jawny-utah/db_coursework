@@ -1,0 +1,25 @@
+table {
+  border: 1px solid rgb(172, 172, 172);
+}
+
+th {
+  background:rgb(255, 178, 134);
+}
+
+th, td {
+  padding: 10px 20px;
+}
+
+tr:hover, tr:nth-child(even):hover {
+  background: rgb(214, 214, 214);
+}
+
+tr:nth-child(even) {
+  background:rgb(241, 241, 241);
+}
+
+.table-info-wrapper {
+  align-items: center;
+  display: flex;
+  gap: 30px;
+}

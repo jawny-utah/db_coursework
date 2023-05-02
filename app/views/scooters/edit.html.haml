@@ -1,0 +1,10 @@
+.centered-div
+  %h1 Edit Scooter
+  = form_with model: @scooter do |form|
+    - Scooter.column_names.reject { |a| fields_to_exclude.include?(a)}.each do |field|
+      .inputs-wrapper
+        = form.label field.humanize, for: "scooter_#{field.to_sym}"
+        = form.text_field field.to_sym, required: true
+    .submit-buttons-wrapper
+      = link_to "Back", scooters_homepages_path
+      = form.submit "Save"

@@ -1,0 +1,23 @@
+.table-info-wrapper
+  %div
+    %h1 Subscriptions
+    .total-records-count
+      %span Total count
+      %span= Subscription.all.length
+  = link_to "Add new subscription", new_subscription_path, class: "small-btn create-btn"
+%table
+  %thead
+    %tr
+      - Subscription.column_names.reject { |col| fields_to_exclude.include?(col) }.map(&:humanize).each do |field|
+        %th= field
+      %th
+  %tbody
+    - Subscription.all.each do |subscription|
+      %tr
+        - Subscription.column_names.reject { |col| fields_to_exclude.include?(col) }.each do |field|
+          %td= subscription.send(field)
+        %td.flex{ style: "gap: 10px;"}
+          = link_to edit_subscription_path(subscription), class: "empty-link" do
+            = render inline: Rails.root.join('app/assets/images/edit.svg').read
+          = button_to subscription_path(subscription), method: :delete, data: { turbo: false }, class: "empty-link" do
+            = render inline: Rails.root.join('app/assets/images/trash.svg').read

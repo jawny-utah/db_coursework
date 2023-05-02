@@ -1,0 +1,17 @@
+%h1 Scooters In Work
+%table
+  %thead
+    %tr
+      %th Scooter In Work
+      %th City
+      %th Battery Capacity
+      %th Current Battery
+      %th Current Location
+  %tbody
+    - ScooterInWork.all.each do |siw|
+      %tr
+        %td= siw.scooter.model
+        %td= siw.city.name
+        %td= siw.battery_capacity
+        %td= siw.current_battery
+        %td= siw.current_location

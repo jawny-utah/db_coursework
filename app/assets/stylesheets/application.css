@@ -13,3 +13,45 @@
  *= require_tree .
  *= require_self
  */
+
+
+* {
+  font-family: sans-serif;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  margin: 0 auto;
+  margin-bottom: 60px;
+  position: relative;
+}
+
+button {
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+}
+
+.centered-div {
+  width: fit-content;
+  margin: 0 auto;
+}
+
+.total-records-count {
+  margin-top: -10px;
+  margin-bottom: 30px;
+}
+
+.empty-link {
+  text-decoration: none;
+}
+
+.flex {
+  display: flex;
+}

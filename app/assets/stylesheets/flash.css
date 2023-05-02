@@ -1,0 +1,24 @@
+.dummy-wrap {
+  animation: slideup 4s forwards;
+  position: absolute;
+}
+
+@keyframes slideup {
+    0% {
+        top: 20px;
+    }
+    75% {
+        top: 20px;
+    }
+    100% {
+        top: -100px;
+    }
+}
+
+.alert {
+  right: 0;
+  font-size: 25px;
+  background: lightgreen;
+  padding: 5px 20px;
+  border-radius: 8px;
+}
