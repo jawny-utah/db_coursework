@@ -1,0 +1,23 @@
+.table-info-wrapper
+  %div
+    %h1 Scooters
+    .total-records-count
+      %span Total count
+      %span= Scooter.all.length
+  = link_to "Add new scooter", new_scooter_path, class: "small-btn create-btn"
+%table
+  %thead
+    %tr
+      - Scooter.column_names.reject { |col| fields_to_exclude.include?(col) }.map(&:humanize).each do |field|
+        %th= field
+      %th
+  %tbody
+    - Scooter.all.each do |scooter|
+      %tr
+        - Scooter.column_names.reject { |col| fields_to_exclude.include?(col) }.each do |field|
+          %td= scooter.send(field)
+        %td.flex{ style: "gap: 10px;"}
+          = link_to edit_scooter_path(scooter), class: "empty-link" do
+            = render inline: Rails.root.join('app/assets/images/edit.svg').read
+          = button_to scooter_path(scooter), method: :delete, data: { turbo: false }, class: "empty-link" do
+            = render inline: Rails.root.join('app/assets/images/trash.svg').read

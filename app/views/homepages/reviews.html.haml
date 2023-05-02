@@ -1,0 +1,13 @@
+%h1 Reviews
+%table
+  %thead
+    %tr
+      %th Order
+      %th Rate
+      %th Body
+  %tbody
+    - Review.all.each do |review|
+      %tr
+        %td= review.order.id
+        %td= review.rate
+        %td= review.body

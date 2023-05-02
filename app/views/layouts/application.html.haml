@@ -1,0 +1,27 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %title CourseWork
+    %meta{:content => "width=device-width,initial-scale=1", :name => "viewport"}/
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_link_tag "application", "data-turbo-track": "reload"
+    = javascript_include_tag "application", "data-turbo-track": "reload", defer: true
+  %body
+    - flash.each do |key, value|
+      %div.alert.dummy-wrap= value
+    %h1
+      = link_to "SCOOTERS APP", root_path, class: "empty-link"
+    .buttons-wrapper
+      = link_to "Administrators", administrators_homepages_path
+      = link_to "Clients", clients_homepages_path
+      = link_to "Transactions", transactions_homepages_path
+      = link_to "Subscriptions", subscriptions_homepages_path
+      = link_to "Clients Subscriptions", clients_subscriptions_homepages_path
+      = link_to "Orders", orders_homepages_path
+      = link_to "Scooters", scooters_homepages_path
+      = link_to "Scooters in work", scooters_in_work_homepages_path
+      = link_to "Reviews", reviews_homepages_path
+      = link_to "Cities", cities_homepages_path
+    = yield

@@ -1,0 +1,15 @@
+%h1 Client Subscriptions
+%table
+  %thead
+    %tr
+      %th Client
+      %th Subscription
+      %th Started At
+      %th Expires At
+  %tbody
+    - ClientSubscription.all.each do |sub|
+      %tr
+        %td= sub.client.first_name + " " + sub.client.last_name
+        %td= sub.subscription.name
+        %td= sub.started_at
+        %td= sub.expires_at

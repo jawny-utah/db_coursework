@@ -1,0 +1,10 @@
+.centered-div
+  %h1 Edit Subscription
+  = form_with model: @subscription do |form|
+    - Subscription.column_names.reject { |a| fields_to_exclude.include?(a)}.each do |field|
+      .inputs-wrapper
+        = form.label field.humanize, for: "client_#{field.to_sym}"
+        = form.text_field field.to_sym, required: true
+    .submit-buttons-wrapper
+      = link_to "Back", clients_homepages_path
+      = form.submit "Save"

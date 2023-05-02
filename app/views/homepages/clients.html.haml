@@ -1,0 +1,23 @@
+.table-info-wrapper
+  %div
+    %h1 Clients
+    .total-records-count
+      %span Total count
+      %span= Client.all.length
+  = link_to "Add new client", new_client_path, class: "small-btn create-btn"
+%table
+  %thead
+    %tr
+      - Client.column_names.reject { |col| fields_to_exclude.include?(col) }.map(&:humanize).each do |field|
+        %th= field
+      %th
+  %tbody
+    - Client.all.each do |client|
+      %tr
+        - Client.column_names.reject { |col| fields_to_exclude.include?(col) }.each do |field|
+          %td= client.send(field)
+        %td.flex{ style: "gap: 10px;"}
+          = link_to edit_client_path(client), class: "empty-link" do
+            = render inline: Rails.root.join('app/assets/images/edit.svg').read
+          = button_to client_path(client), method: :delete, data: { turbo: false }, class: "empty-link" do
+            = render inline: Rails.root.join('app/assets/images/trash.svg').read

@@ -1,0 +1,11 @@
+%h1 Transactions
+%table
+  %thead
+    %tr
+      - Transaction.column_names.reject { |col| fields_to_exclude.include?(col) }.map(&:humanize).each do |field|
+        %th= field
+  %tbody
+    - Transaction.all.each do |transaction|
+      %tr
+        - Transaction.column_names.reject { |col| fields_to_exclude.include?(col) }.each do |field|
+          %td= transaction.send(field)
