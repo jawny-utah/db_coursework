@@ -1,4 +1,10 @@
-%h1 Orders
+.table-info-wrapper
+  %div
+    %h1 Orders
+    .total-records-count
+      %span Total count
+      %span= Order.all.length
+  = link_to "Add new order", new_order_path, class: "small-btn create-btn"
 %table
   %thead
     %tr
@@ -7,11 +13,17 @@
       %th Started At
       %th Ended At
       %th Total Sum
+      %th
   %tbody
     - Order.all.each do |order|
       %tr
-        %td= order.scooter_in_work.scooter.model
+        %td= order.scooter_in_work.model
         %td= order.client.first_name + " " + order.client.last_name
         %td= order.started_at
         %td= order.ended_at
         %td= order.total_sum
+        %td.flex{ style: "gap: 10px;"}
+          = link_to edit_order_path(order), class: "empty-link" do
+            = render inline: Rails.root.join('app/assets/images/edit.svg').read
+          = button_to order_path(order), method: :delete, data: { turbo: false }, class: "empty-link" do
+            = render inline: Rails.root.join('app/assets/images/trash.svg').read

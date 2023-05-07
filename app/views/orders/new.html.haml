@@ -1,0 +1,21 @@
+.centered-div
+  %h1 Add Order
+  = form_with model: Order.new do |form|
+    .inputs-wrapper
+      = form.label :scooter_in_work_id
+      = form.select :scooter_in_work_id, options_from_collection_for_select(ScooterInWork.all, :id, :model), required: true
+    .inputs-wrapper
+      = form.label :client_id
+      = form.select :client_id, options_from_collection_for_select(Client.all, :id, :full_name), required: true
+    .inputs-wrapper
+      = form.label :started_at
+      = form.datetime_field :started_at
+    .inputs-wrapper
+      = form.label :ended_at
+      = form.datetime_field :ended_at
+    .inputs-wrapper
+      = form.label :total_sum
+      = form.text_field :total_sum
+    .submit-buttons-wrapper
+      = link_to "Back", orders_homepages_path
+      = form.submit "Save"

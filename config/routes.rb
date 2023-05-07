@@ -21,4 +21,9 @@ Rails.application.routes.draw do
   resources :subscriptions
   resources :scooters
   resources :cities
+  resources :transactions
+  resources :client_subscriptions
+  resources :orders
+  resources :scooter_in_works
+  resources :reviews
 end

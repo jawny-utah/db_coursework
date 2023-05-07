@@ -1,0 +1,15 @@
+.centered-div
+  %h1 Edit Review
+  = form_with model: @review do |form|
+    .inputs-wrapper
+      = form.label :order_id
+      = form.select :order_id, options_from_collection_for_select(Order.all, :id, :id, @review.order_id), required: true
+    .inputs-wrapper
+      = form.label :rate
+      = form.text_field :rate, required: true
+    .inputs-wrapper
+      = form.label :body
+      = form.text_field :body, required: true
+    .submit-buttons-wrapper
+      = link_to "Back", reviews_homepages_path
+      = form.submit "Save"

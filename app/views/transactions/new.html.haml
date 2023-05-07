@@ -1,0 +1,12 @@
+.centered-div
+  %h1 Add transaction
+  = form_with model: Transaction.new do |form|
+    .inputs-wrapper
+      = form.label :order_id
+      = form.select :order_id, options_for_select(Order.all.map {|k| k.id})
+    .inputs-wrapper
+      = form.label :status
+      = form.select :status, options_for_select(Transaction.statuses.map {|k, _v| [k.humanize.capitalize, k]})
+    .submit-buttons-wrapper
+      = link_to "Back", transactions_homepages_path
+      = form.submit "Save"

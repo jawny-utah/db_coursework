@@ -1,12 +1,19 @@
-%h1 Scooters In Work
+.table-info-wrapper
+  %div
+    %h1 Scooters In Work
+    .total-records-count
+      %span Total count
+      %span= ScooterInWork.all.length
+  = link_to "Add new scooter in work", new_scooter_in_work_path, class: "small-btn create-btn"
 %table
   %thead
     %tr
-      %th Scooter In Work
+      %th Scooter
       %th City
       %th Battery Capacity
       %th Current Battery
       %th Current Location
+      %th
   %tbody
     - ScooterInWork.all.each do |siw|
       %tr
@@ -15,3 +22,8 @@
         %td= siw.battery_capacity
         %td= siw.current_battery
         %td= siw.current_location
+        %td.flex{ style: "gap: 10px;"}
+          = link_to edit_scooter_in_work_path(siw), class: "empty-link" do
+            = render inline: Rails.root.join('app/assets/images/edit.svg').read
+          = button_to scooter_in_work_path(siw), method: :delete, data: { turbo: false }, class: "empty-link" do
+            = render inline: Rails.root.join('app/assets/images/trash.svg').read
