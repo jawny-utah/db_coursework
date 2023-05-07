@@ -1,0 +1,12 @@
+.centered-div
+  %h1 Edit transaction
+  = form_with model: @transaction do |form|
+    .inputs-wrapper
+      = form.label :order_id
+      = form.select :order_id, options_for_select(Order.all.map {|k| k.id}), required: true
+    .inputs-wrapper
+      = form.label :status
+      = form.select :status, options_for_select(Transaction.statuses.map {|k, _v| [k.humanize.capitalize, k]}), required: true
+    .submit-buttons-wrapper
+      = link_to "Back", transactions_homepages_path
+      = form.submit "Save"

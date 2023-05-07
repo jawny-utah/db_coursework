@@ -1,0 +1,21 @@
+.centered-div
+  %h1 Edit Scooter in work
+  = form_with model: @scooter_in_work do |form|
+    .inputs-wrapper
+      = form.label :scooter_id
+      = form.select :scooter_id, options_from_collection_for_select(Scooter.all, :id, :model, @scooter_in_work.scooter_id), required: true
+    .inputs-wrapper
+      = form.label :city_id
+      = form.select :city_id, options_from_collection_for_select(City.all, :id, :name, @scooter_in_work.city_id), required: true
+    .inputs-wrapper
+      = form.label :battery_capacity
+      = form.text_field :battery_capacity, required: true
+    .inputs-wrapper
+      = form.label :current_battery
+      = form.text_field :current_battery, required: true
+    .inputs-wrapper
+      = form.label :current_location
+      = form.text_field :current_location
+    .submit-buttons-wrapper
+      = link_to "Back", scooters_in_work_homepages_path
+      = form.submit "Save"

@@ -1,0 +1,18 @@
+.centered-div
+  %h1 Edit Client Subscription
+  = form_with model: @client_subscription do |form|
+    .inputs-wrapper
+      = form.label :client_id
+      = form.select :client_id, options_from_collection_for_select(Client.all, :id, :full_name, @client_subscription.client_id), required: true
+    .inputs-wrapper
+      = form.label :subscription_id
+      = form.select :subscription_id, options_from_collection_for_select(Subscription.all, :id, :name, @client_subscription.subscription_id), required: true
+    .inputs-wrapper
+      = form.label :started_at
+      = form.date_field :started_at
+    .inputs-wrapper
+      = form.label :expires_at
+      = form.date_field :expires_at
+    .submit-buttons-wrapper
+      = link_to "Back", clients_subscriptions_homepages_path
+      = form.submit "Save"
