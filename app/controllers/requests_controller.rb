@@ -78,7 +78,7 @@ class RequestsController < ApplicationController
   end
 
   def count_request
-    @description = "Get total count of order for last month"
+    @description = "Get total count of scooters in work where battery is > 50%"
     @sql = "SELECT COUNT(*) FROM scooter_in_works WHERE current_battery > 50"
     @records = ActiveRecord::Base.connection.exec_query(@sql)
 
@@ -86,7 +86,7 @@ class RequestsController < ApplicationController
   end
 
   def count_and_other_fields_request
-    @description = "Get total count of order for last month"
+    @description = "Get subscriptions name and count of clients that bought it"
     @sql = "SELECT subscriptions.name, COUNT(subscriptions.name) FROM client_subscriptions
             JOIN subscriptions ON client_subscriptions.subscription_id = subscriptions.id
             GROUP BY subscriptions.name"
@@ -151,7 +151,7 @@ class RequestsController < ApplicationController
   end
 
   def exist_request
-    @description = "Get total orders sum of clients who made more than 3 orders"
+    @description = "Get clients that have at least one order"
     @sql = "SELECT * FROM clients
             WHERE EXISTS (SELECT 1 FROM orders WHERE orders.client_id = clients.id)"
     @records = ActiveRecord::Base.connection.exec_query(@sql)
@@ -169,7 +169,7 @@ class RequestsController < ApplicationController
   end
 
   def inner_join_in_subquery_request
-    @description = "Get all clients that made order on 2023-04-03"
+    @description = "Get all clients that made orders in previous month"
     @sql = "SELECT * FROM clients
             WHERE id IN (SELECT orders.client_id FROM orders
                         JOIN clients ON orders.client_id = clients.id

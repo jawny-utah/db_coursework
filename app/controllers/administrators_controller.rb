@@ -1,6 +1,9 @@
 class AdministratorsController < ApplicationController
   def destroy
     Administrator.find(params[:id]).destroy
+
+    flash[:notice] = 'Administrator was destroyed'
+
     redirect_to administrators_homepages_path
   end
 
