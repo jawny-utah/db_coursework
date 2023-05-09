@@ -16,8 +16,5 @@
       %tr
         - Administrator.column_names.reject { |col| fields_to_exclude.include?(col) }.each do |field|
           %td= admin.send(field)
-        %td.flex{ style: "gap: 10px;"}
-          = link_to edit_administrator_path(admin), class: "empty-link" do
-            = render inline: Rails.root.join('app/assets/images/edit.svg').read
-          = button_to administrator_path(admin), method: :delete, data: { turbo: false }, class: "empty-link" do
-            = render inline: Rails.root.join('app/assets/images/trash.svg').read
+        = render partial: "shared/edit_delete_button_tr", locals: { edit_path: edit_administrator_path(admin),
+                                                                    delete_path: administrator_path(admin) }

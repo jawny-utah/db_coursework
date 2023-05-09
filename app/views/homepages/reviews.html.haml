@@ -15,11 +15,8 @@
   %tbody
     - Review.all.each do |review|
       %tr
-        %td= review.order.id
+        %td= review.order&.id
         %td= review.rate
         %td= review.body
-        %td.flex{ style: "gap: 10px;"}
-          = link_to edit_review_path(review), class: "empty-link" do
-            = render inline: Rails.root.join('app/assets/images/edit.svg').read
-          = button_to review_path(review), method: :delete, data: { turbo: false }, class: "empty-link" do
-            = render inline: Rails.root.join('app/assets/images/trash.svg').read
+        = render partial: "shared/edit_delete_button_tr", locals: { edit_path: edit_review_path(review),
+                                                                    delete_path: review_path(review) }

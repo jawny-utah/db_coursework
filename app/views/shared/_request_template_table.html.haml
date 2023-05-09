@@ -1,0 +1,16 @@
+= link_to "Back", requests_path
+%h1= description
+%h2= sql
+%h2
+  Total Count
+  = records.count
+%table
+  %thead
+    %tr
+      - records.columns.each do |field|
+        %th= field
+  %tbody
+    - records.each do |record|
+      %tr
+        - record.each do |_col, val|
+          %td= val

@@ -16,8 +16,5 @@
       %tr
         - Transaction.column_names.reject { |col| fields_to_exclude.include?(col) }.each do |field|
           %td= transaction.send(field)
-        %td.flex{ style: "gap: 10px;"}
-          = link_to edit_transaction_path(transaction), class: "empty-link" do
-            = render inline: Rails.root.join('app/assets/images/edit.svg').read
-          = button_to transaction_path(transaction), method: :delete, data: { turbo: false }, class: "empty-link" do
-            = render inline: Rails.root.join('app/assets/images/trash.svg').read
+        = render partial: "shared/edit_delete_button_tr", locals: { edit_path: edit_transaction_path(transaction),
+                                                                    delete_path: transaction_path(transaction) }

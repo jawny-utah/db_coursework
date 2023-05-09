@@ -17,13 +17,10 @@
   %tbody
     - ScooterInWork.all.each do |siw|
       %tr
-        %td= siw.scooter.model
+        %td= siw.scooter&.model
         %td= siw.city.name
         %td= siw.battery_capacity
         %td= siw.current_battery
         %td= siw.current_location
-        %td.flex{ style: "gap: 10px;"}
-          = link_to edit_scooter_in_work_path(siw), class: "empty-link" do
-            = render inline: Rails.root.join('app/assets/images/edit.svg').read
-          = button_to scooter_in_work_path(siw), method: :delete, data: { turbo: false }, class: "empty-link" do
-            = render inline: Rails.root.join('app/assets/images/trash.svg').read
+        = render partial: "shared/edit_delete_button_tr", locals: { edit_path: edit_scooter_in_work_path(siw),
+                                                                    delete_path: scooter_in_work_path(siw) }
