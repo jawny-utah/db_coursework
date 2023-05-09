@@ -16,12 +16,9 @@
   %tbody
     - ClientSubscription.all.each do |sub|
       %tr
-        %td= sub.client.first_name + " " + sub.client.last_name
+        %td= sub.client&.full_name
         %td= sub.subscription.name
         %td= sub.started_at
         %td= sub.expires_at
-        %td.flex{ style: "gap: 10px;"}
-          = link_to edit_client_subscription_path(sub), class: "empty-link" do
-            = render inline: Rails.root.join('app/assets/images/edit.svg').read
-          = button_to client_subscription_path(sub), method: :delete, data: { turbo: false }, class: "empty-link" do
-            = render inline: Rails.root.join('app/assets/images/trash.svg').read
+        = render partial: "shared/edit_delete_button_tr", locals: { edit_path: edit_client_subscription_path(sub),
+                                                                    delete_path: client_subscription_path(sub) }

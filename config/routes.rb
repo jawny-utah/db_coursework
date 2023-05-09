@@ -16,6 +16,31 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :requests, only: :index do
+    collection do
+      get :get_request
+      get :between_request
+      get :in_request
+      get :like_request
+      get :two_condition_with_and_request
+      get :two_condition_with_or_request
+      get :distinct_request
+      get :max_request
+      get :sum_request
+      get :count_request
+      get :count_and_other_fields_request
+      get :inner_join_with_condition_request
+      get :inner_request_with_condition
+      get :left_join_request
+      get :right_join_request
+      get :inner_join_with_aggregate_and_having_request
+      get :exist_request
+      get :any_request
+      get :inner_join_in_subquery_request
+      get :aggregate_function_with_condition_and_ordering_request
+    end
+  end
+
   resources :administrators
   resources :clients
   resources :subscriptions

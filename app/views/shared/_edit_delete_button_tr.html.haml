@@ -1,0 +1,6 @@
+%td{ style: 'width: 30px;'}
+  .flex{ style: "gap: 10px;"}
+    = link_to edit_path, class: "empty-link" do
+      = render inline: Rails.root.join('app/assets/images/edit.svg').read
+    = button_to delete_path, method: :delete, data: { turbo: false }, class: "empty-link" do
+      = render inline: Rails.root.join('app/assets/images/trash.svg').read

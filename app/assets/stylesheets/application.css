@@ -55,3 +55,9 @@ button {
 .flex {
   display: flex;
 }
+
+.vertical-buttons-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}

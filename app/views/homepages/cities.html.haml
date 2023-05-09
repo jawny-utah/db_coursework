@@ -16,8 +16,5 @@
       %tr
         - City.column_names.reject { |col| fields_to_exclude.include?(col) }.each do |field|
           %td= city.send(field)
-        %td.flex{ style: "gap: 10px;"}
-          = link_to edit_city_path(city), class: "empty-link" do
-            = render inline: Rails.root.join('app/assets/images/edit.svg').read
-          = button_to city_path(city), method: :delete, data: { turbo: false }, class: "empty-link" do
-            = render inline: Rails.root.join('app/assets/images/trash.svg').read
+        = render partial: "shared/edit_delete_button_tr", locals: { edit_path: edit_city_path(city),
+                                                                    delete_path: city_path(city) }

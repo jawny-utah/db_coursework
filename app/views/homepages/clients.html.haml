@@ -16,8 +16,5 @@
       %tr
         - Client.column_names.reject { |col| fields_to_exclude.include?(col) }.each do |field|
           %td= client.send(field)
-        %td.flex{ style: "gap: 10px;"}
-          = link_to edit_client_path(client), class: "empty-link" do
-            = render inline: Rails.root.join('app/assets/images/edit.svg').read
-          = button_to client_path(client), method: :delete, data: { turbo: false }, class: "empty-link" do
-            = render inline: Rails.root.join('app/assets/images/trash.svg').read
+        = render partial: "shared/edit_delete_button_tr", locals: { edit_path: edit_client_path(client),
+                                                                    delete_path: client_path(client) }
